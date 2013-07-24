@@ -1,15 +1,15 @@
 set nocompatible  " We don't want vi compatibility.
 filetype on  " Automatically detect file types.
- 
+
 " Add recently accessed projects menu (project plugin)
 set viminfo^=!
- 
+
 " Minibuffer Explorer Settings
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
- 
+
 " alt+n or alt+p to navigate between entries in QuickFix
 map <silent> <m-p> :cp <cr>
 map <silent> <m-n> :cn <cr>
@@ -22,14 +22,18 @@ nmap <leader>l <C-W><Left>
 nmap <leader>u <C-W><Up>
 nmap <leader>d <C-W><Down>
 nmap <leader>b <C-^>
- 
+nmap <Space> <C-d>
+nmap <BS> <C-u>
+
 " ,ds in normal mode to open the NERDTree
 let mapleader = ","
+let NERDTreeIgnore = ['\.swp$', '\.log$']
 nmap <leader>ds :NERDTree<cr>
+" caps_lock for esc key
 
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
- 
+
 syntax enable
 set cf  " Enable error files & error jumping.
 set clipboard+=unnamed  " Yanks go on clipboard instead.
@@ -52,7 +56,12 @@ set nu
 set ignorecase
 set listchars=trail:~
 set list
- 
+
+" set ack for grep program
+set grepprg=ack
+set grepformat=%f:%l:%m
 " Visual
 set showmatch  " Show matching brackets.
 set mat=5  " Bracket blinking.
+" html validator
+au QuickFixCmdPost make cwindow
